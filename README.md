@@ -1,5 +1,6 @@
 # redis_importer
-Some tooling that loads a csv into a Redis database for fast/easy queries. I designed it to be used as a package and it will return an iterable with the same interface as csv.DictReader(). Therefore, there are no code modifications needed to use it. Redis runs in memory, using about ~ 450MiB for the entire sales order details csv file. It is very, very fast once the import is done. The Redis import takes about 30 minutes to load all 750,000 records. It will probably go faster on a Linux desktop than my Mac laptop (Docker on macOS runs in a VM so its slow). 
+Some tooling that loads a csv into a Redis database for fast/easy queries. I designed it to be used as a package and it will return an iterable with the same interface as csv.DictReader(). Therefore, there are no code modifications needed to use it. Redis runs in memory, using about ~ 450MiB for a 208MiB csv file. It is very, very fast once the import is done. The Redis import takes about 10 minutes to load 750,000 records from the 208MiB file. We use LZMA to lower the Redis memory footprint 
+when serializing the records to Redis.
 
 Here is how to use it:
 
